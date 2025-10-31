@@ -1,0 +1,370 @@
+[gd_scene load_steps=40 format=3 uid="uid://dvrp2ynhx5s6i"]
+
+[ext_resource type="Texture2D" uid="uid://dwfd2322aeenw" path="res://sprites/front bg.png" id="1_wvgt4"]
+[ext_resource type="Texture2D" uid="uid://bl73c7ndl2i3v" path="res://sprites/bird stand no color.png" id="2_1oo4w"]
+[ext_resource type="Texture2D" uid="uid://by5vovrbrw85g" path="res://sprites/instructions no color.png" id="3_705lo"]
+[ext_resource type="Texture2D" uid="uid://b8lohx4q1l08w" path="res://sprites/radio no color.png" id="4_hnl85"]
+[ext_resource type="Texture2D" uid="uid://b0xehwtxlruvf" path="res://sprites/pc no color.png" id="5_4x5wv"]
+[ext_resource type="Texture2D" uid="uid://fd7wnmu4xako" path="res://sprites/right bg.png" id="6_nabi2"]
+[ext_resource type="Texture2D" uid="uid://bflau5neafrkm" path="res://sprites/bird stand right no color.png" id="7_te8p1"]
+[ext_resource type="Texture2D" uid="uid://dsje7lgop202n" path="res://sprites/brush right no color.png" id="8_05s8x"]
+[ext_resource type="Texture2D" uid="uid://bmpubwje0n8pe" path="res://sprites/instructions no color right.png" id="9_44nsb"]
+[ext_resource type="Texture2D" uid="uid://cmw2safcj3bfg" path="res://sprites/water right no color.png" id="10_nlpd3"]
+[ext_resource type="Texture2D" uid="uid://bail1bm5khy8e" path="res://sprites/yellow right no color.png" id="11_mchkp"]
+[ext_resource type="Texture2D" uid="uid://bb0f5hrg2wlb0" path="res://sprites/blue right no color.png" id="12_bldvh"]
+[ext_resource type="Texture2D" uid="uid://b6lkmml3j12rq" path="res://sprites/green right no color.png" id="13_txx6q"]
+[ext_resource type="Texture2D" uid="uid://fe6mk58jq8tm" path="res://sprites/red right no color.png" id="14_1hxlm"]
+[ext_resource type="Texture2D" uid="uid://dk2iv0ifuucx3" path="res://sprites/assets left bg unfinished.png" id="15_5y0hc"]
+[ext_resource type="Texture2D" uid="uid://6ntw4287imxq" path="res://sprites/assets left boxes unfinished.png" id="16_j6jcs"]
+[ext_resource type="Texture2D" uid="uid://cmdqcs3xf0381" path="res://sprites/assets back bg unfinished.png" id="17_tvj7j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaduh"]
+size = Vector2(325, 113)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs06s"]
+size = Vector2(544, 349)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3ryx"]
+size = Vector2(342, 188)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfu1t"]
+size = Vector2(600, 544)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irs6l"]
+size = Vector2(516, 141)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8f0ij"]
+size = Vector2(75.75, 584)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvwml"]
+size = Vector2(51, 608.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w563o"]
+size = Vector2(593, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfmwf"]
+size = Vector2(60.0558, 197.118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gygla"]
+size = Vector2(300, 390)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vxvj"]
+size = Vector2(178.5, 203)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv2vm"]
+size = Vector2(115.5, 83)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h803t"]
+size = Vector2(115, 94.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j0l4"]
+size = Vector2(94, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tin4r"]
+size = Vector2(121.5, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cesoe"]
+size = Vector2(389, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvstx"]
+size = Vector2(425, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owiby"]
+size = Vector2(394, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxh0r"]
+size = Vector2(370, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n06u5"]
+size = Vector2(404, 246)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ii2aa"]
+size = Vector2(1149, 643)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kf6wp"]
+size = Vector2(677, 1061)
+
+[node name="Game" type="Node2D"]
+
+[node name="front" type="Node2D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="front"]
+size = Vector2i(1920, 1080)
+
+[node name="TextureRect" type="TextureRect" parent="front"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_wvgt4")
+
+[node name="birdstand" type="Area2D" parent="front"]
+position = Vector2(114, 69)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front/birdstand"]
+position = Vector2(844.5, 790.5)
+shape = SubResource("RectangleShape2D_uaduh")
+
+[node name="TextureRect" type="TextureRect" parent="front/birdstand"]
+offset_left = 673.0
+offset_top = 712.0
+offset_right = 1016.0
+offset_bottom = 858.0
+texture = ExtResource("2_1oo4w")
+
+[node name="instructions" type="Area2D" parent="front"]
+position = Vector2(-5, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front/instructions"]
+position = Vector2(967, 247.5)
+shape = SubResource("RectangleShape2D_vs06s")
+
+[node name="TextureRect" type="TextureRect" parent="front/instructions"]
+offset_left = 682.0
+offset_top = 60.0
+offset_right = 1244.0
+offset_bottom = 434.0
+texture = ExtResource("3_705lo")
+
+[node name="radio" type="Area2D" parent="front"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front/radio"]
+position = Vector2(1562, 328)
+shape = SubResource("RectangleShape2D_v3ryx")
+
+[node name="TextureRect" type="TextureRect" parent="front/radio"]
+offset_left = 1389.0
+offset_top = 75.0
+offset_right = 1736.0
+offset_bottom = 436.0
+texture = ExtResource("4_hnl85")
+
+[node name="pc" type="Area2D" parent="front"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front/pc"]
+position = Vector2(359, 599)
+shape = SubResource("RectangleShape2D_cfu1t")
+
+[node name="TextureRect" type="TextureRect" parent="front/pc"]
+offset_left = -9.0
+offset_top = 310.0
+offset_right = 680.0
+offset_bottom = 880.0
+texture = ExtResource("5_4x5wv")
+
+[node name="cow drawer" type="Area2D" parent="front"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front/cow drawer"]
+position = Vector2(1559, 593.5)
+shape = SubResource("RectangleShape2D_irs6l")
+
+[node name="button right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="button right"]
+position = Vector2(1881, 581)
+shape = SubResource("RectangleShape2D_8f0ij")
+
+[node name="TextureRect" type="TextureRect" parent="button right"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="button left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="button left"]
+position = Vector2(25.5, 568.75)
+shape = SubResource("RectangleShape2D_kvwml")
+
+[node name="TextureRect" type="TextureRect" parent="button left"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="right" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="right"]
+offset_left = 1930.0
+offset_right = 3850.0
+offset_bottom = 1080.0
+texture = ExtResource("6_nabi2")
+
+[node name="birdstandP" type="Area2D" parent="right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/birdstandP"]
+position = Vector2(2928.5, 899.5)
+shape = SubResource("RectangleShape2D_w563o")
+
+[node name="TextureRect" type="TextureRect" parent="right/birdstandP"]
+offset_left = 2624.0
+offset_top = 817.0
+offset_right = 3236.0
+offset_bottom = 973.0
+texture = ExtResource("7_te8p1")
+
+[node name="brush" type="Area2D" parent="right"]
+position = Vector2(-49, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/brush"]
+position = Vector2(3371.35, 905.999)
+rotation = -0.324602
+shape = SubResource("RectangleShape2D_vfmwf")
+
+[node name="TextureRect2" type="TextureRect" parent="right/brush"]
+offset_left = 3312.0
+offset_top = 802.0
+offset_right = 3445.0
+offset_bottom = 998.0
+texture = ExtResource("8_05s8x")
+
+[node name="instructionsP" type="Area2D" parent="right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/instructionsP"]
+position = Vector2(3134, 256)
+shape = SubResource("RectangleShape2D_gygla")
+
+[node name="TextureRect" type="TextureRect" parent="right/instructionsP"]
+offset_left = 2969.0
+offset_top = 45.0
+offset_right = 3299.0
+offset_bottom = 464.0
+texture = ExtResource("9_44nsb")
+
+[node name="water" type="Area2D" parent="right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/water"]
+position = Vector2(3439.25, 760.5)
+shape = SubResource("RectangleShape2D_1vxvj")
+
+[node name="TextureRect" type="TextureRect" parent="right/water"]
+offset_left = 3338.0
+offset_top = 652.0
+offset_right = 3545.0
+offset_bottom = 873.0
+texture = ExtResource("10_nlpd3")
+
+[node name="yellow" type="Area2D" parent="right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/yellow"]
+position = Vector2(2076.25, 883.5)
+shape = SubResource("RectangleShape2D_jv2vm")
+
+[node name="TextureRect" type="TextureRect" parent="right/yellow"]
+offset_left = 1976.0
+offset_top = 823.0
+offset_right = 2164.0
+offset_bottom = 966.0
+texture = ExtResource("11_mchkp")
+
+[node name="blue" type="Area2D" parent="right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/blue"]
+position = Vector2(2207, 886.25)
+shape = SubResource("RectangleShape2D_h803t")
+
+[node name="TextureRect" type="TextureRect" parent="right/blue"]
+offset_left = 2129.0
+offset_top = 827.0
+offset_right = 2276.0
+offset_bottom = 943.0
+texture = ExtResource("12_bldvh")
+
+[node name="green" type="Area2D" parent="right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/green"]
+position = Vector2(2327, 893)
+shape = SubResource("RectangleShape2D_8j0l4")
+
+[node name="TextureRect" type="TextureRect" parent="right/green"]
+offset_left = 2272.0
+offset_top = 843.0
+offset_right = 2394.0
+offset_bottom = 949.0
+texture = ExtResource("13_txx6q")
+
+[node name="red" type="Area2D" parent="right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/red"]
+position = Vector2(2447.75, 894)
+shape = SubResource("RectangleShape2D_tin4r")
+
+[node name="TextureRect" type="TextureRect" parent="right/red"]
+offset_left = 2381.0
+offset_top = 846.0
+offset_right = 2532.0
+offset_bottom = 949.0
+texture = ExtResource("14_1hxlm")
+
+[node name="cow box" type="Area2D" parent="right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right/cow box"]
+position = Vector2(2337.5, 429)
+shape = SubResource("RectangleShape2D_cesoe")
+
+[node name="left" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="left"]
+offset_left = -1932.0
+offset_right = -12.0
+offset_bottom = 1080.0
+texture = ExtResource("15_5y0hc")
+
+[node name="heads" type="Area2D" parent="left"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left/heads"]
+position = Vector2(-1635.5, 725)
+shape = SubResource("RectangleShape2D_jvstx")
+
+[node name="bodies" type="Area2D" parent="left"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left/bodies"]
+position = Vector2(-1166, 727)
+shape = SubResource("RectangleShape2D_owiby")
+
+[node name="wings" type="Area2D" parent="left"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left/wings"]
+position = Vector2(-740, 722)
+shape = SubResource("RectangleShape2D_kxh0r")
+
+[node name="tails" type="Area2D" parent="left"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left/tails"]
+position = Vector2(-315, 719)
+shape = SubResource("RectangleShape2D_n06u5")
+
+[node name="boxes" type="TextureRect" parent="left"]
+offset_left = -1937.0
+offset_top = -6.0
+offset_right = -17.0
+offset_bottom = 1074.0
+texture = ExtResource("16_j6jcs")
+
+[node name="back" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="back"]
+offset_top = 1090.0
+offset_right = 1920.0
+offset_bottom = 2170.0
+texture = ExtResource("17_tvj7j")
+
+[node name="window" type="Area2D" parent="back"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="back/window"]
+position = Vector2(1356.5, 1512.5)
+shape = SubResource("RectangleShape2D_ii2aa")
+
+[node name="door" type="Area2D" parent="back"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="back/door"]
+position = Vector2(373.5, 1637.5)
+shape = SubResource("RectangleShape2D_kf6wp")
+
+[node name="button up" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="button up"]
+
+[node name="TextureRect" type="TextureRect" parent="button up"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="up" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="up"]
+offset_right = 40.0
+offset_bottom = 40.0

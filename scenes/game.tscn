@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://bj0gw6m72xkqj"]
+
+[ext_resource type="Script" uid="uid://ctfernt0kfcp3" path="res://scripts/camera.gd" id="1_p57ef"]
+[ext_resource type="Texture2D" uid="uid://2clfcrhikcif" path="res://sprites/assets front.png" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://b07ill4tktv5i" path="res://scripts/interact_area.gd" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://dn7b7b7l64sv7" path="res://scripts/room_switch_area.gd" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://dbe4q4dh0ywln" path="res://sprites/assets back.png" id="4_iywne"]
+[ext_resource type="Texture2D" uid="uid://dlno60mi4lj4b" path="res://sprites/assets right.png" id="5_p57ef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(574, 533)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqjtg"]
+size = Vector2(576, 402)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+size = Vector2(393, 195)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
+size = Vector2(64, 1080)
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="."]
+offset = Vector2(960, 540)
+script = ExtResource("1_p57ef")
+speed = 3000.0
+
+[node name="Front" type="Sprite2D" parent="."]
+texture = ExtResource("1_uwrxv")
+centered = false
+
+[node name="PC" type="Area2D" parent="Front"]
+position = Vector2(108, 338)
+script = ExtResource("2_yqjtg")
+metadata/_custom_type_script = "uid://b07ill4tktv5i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/PC"]
+position = Vector2(277, 256.5)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="Instructions" type="Area2D" parent="Front"]
+position = Vector2(691, 30)
+script = ExtResource("2_yqjtg")
+metadata/_custom_type_script = "uid://b07ill4tktv5i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/Instructions"]
+position = Vector2(278, 191)
+shape = SubResource("RectangleShape2D_yqjtg")
+
+[node name="BirdStand" type="Area2D" parent="Front"]
+position = Vector2(801, 783)
+script = ExtResource("2_yqjtg")
+metadata/_custom_type_script = "uid://b07ill4tktv5i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/BirdStand"]
+position = Vector2(186.5, 87.5)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="LeftArea" type="Area2D" parent="Front"]
+script = ExtResource("3_lnu2h")
+metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/LeftArea"]
+position = Vector2(32, 540)
+shape = SubResource("RectangleShape2D_iywne")
+
+[node name="RightArea" type="Area2D" parent="Front" node_paths=PackedStringArray("target_room")]
+script = ExtResource("3_lnu2h")
+is_right = true
+target_room = NodePath("../../Right")
+metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/RightArea"]
+position = Vector2(1888, 540)
+shape = SubResource("RectangleShape2D_iywne")
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(2083, 1428)
+texture = ExtResource("4_iywne")
+centered = false
+
+[node name="Right" type="Sprite2D" parent="."]
+position = Vector2(1920, 0)
+texture = ExtResource("5_p57ef")
+centered = false
+
+[node name="LeftArea" type="Area2D" parent="Right" node_paths=PackedStringArray("target_room")]
+script = ExtResource("3_lnu2h")
+target_room = NodePath("../../Front")
+metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/LeftArea"]
+position = Vector2(32, 540)
+shape = SubResource("RectangleShape2D_iywne")
+
+[node name="RightArea" type="Area2D" parent="Right" node_paths=PackedStringArray("target_room")]
+script = ExtResource("3_lnu2h")
+is_right = true
+target_room = NodePath("..")
+metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/RightArea"]
+position = Vector2(1888, 540)
+shape = SubResource("RectangleShape2D_iywne")
