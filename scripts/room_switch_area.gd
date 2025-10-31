@@ -14,7 +14,6 @@ func _ready() -> void:
 
 
 func _on_mouse_entered() -> void:
-    print(name + ": mouse entered")
     if is_right:
         Input.set_custom_mouse_cursor(Global.CURSOR_ARROW_RIGHT)
     else:
@@ -22,8 +21,7 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
-    print(name + ": mouse exited")
-    Input.set_custom_mouse_cursor(null)
+    Input.set_custom_mouse_cursor(Global.CURSOR_ARROW)
 
 
 func _on_input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:

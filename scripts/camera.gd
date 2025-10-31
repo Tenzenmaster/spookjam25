@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 		target_room = null
 		finished_moving.emit()
 
+
 func switch_room(room: Node2D) -> void:
 	switching_room = true
 	target_room = room
