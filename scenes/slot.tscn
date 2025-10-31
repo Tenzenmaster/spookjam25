@@ -7,10 +7,11 @@
 texture = ExtResource("1_4v6ba")
 script = ExtResource("2_ic0fu")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Item" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 149.0
+scale = Vector2(0.5, 0.5)

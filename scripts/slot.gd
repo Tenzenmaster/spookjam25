@@ -2,10 +2,10 @@ class_name Slot
 extends TextureRect
 
 
-@onready var margin_container: MarginContainer = $MarginContainer
+@onready var item: TextureRect = $Item
 
 
-var body_part: TextureRect
+var part: BirdBox.BodyPart
 
 
 func _ready() -> void:
@@ -13,17 +13,32 @@ func _ready() -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-    if event.is_action_pressed(&"interact") and Global.game.grabbed_part:
-        print("meow")
-        add_item(Global.game.grabbed_part.body_part_kind)
-        Global.game.put_down_part()
+    if event.is_action_pressed(&"interact"):
+        if Global.game.grabbed_part:
+            add_item(Global.game.grabbed_part.body_part_kind)
+            Global.game.put_down_part()
+        elif not is_empty():
+            take_out_item()
 
 
 func add_item(body_part_kind: BirdBox.BodyPart) -> void:
-    if body_part:
-        body_part.queue_free()
+    part = body_part_kind
+    item.texture = BirdBox.BODY_PART_DICT[body_part_kind]
+    item.show()
+
+
+func remove_item() -> void:
+    item.hide()
+
+
+func take_out_item() -> bool:
+    if is_empty():
+        return false
+
+    Global.game.pick_up_part(part)
+    remove_item()
     
-    var tex := TextureRect.new()
-    tex.texture = BirdBox.BODY_PART_DICT[body_part_kind]
-    margin_container.add_child(tex)
-    tex.scale = Vector2(0.5, 0.5)
+    return true
+
+func is_empty() -> bool:
+    return not item.visible
