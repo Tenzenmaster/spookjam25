@@ -6,7 +6,10 @@ const CURSOR_ARROW_RIGHT := preload("res://sprites/arrow turn tiny flipped.png")
 const CURSOR_ARROW := preload("res://sprites/cursor tiny.png")
 
 
-signal room_switch(room: Node2D)
+signal room_switch(from_room: Node2D, target_room: Node2D)
+
+
+var game: Game = null
 
 
 func _enter_tree() -> void:

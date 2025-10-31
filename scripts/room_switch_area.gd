@@ -3,6 +3,7 @@ extends Area2D
 
 
 @export var is_right := false
+@export var is_edge := false
 @export var target_room: Node2D
 
 
@@ -27,4 +28,4 @@ func _on_mouse_exited() -> void:
 
 func _on_input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
     if event.is_action_pressed(&"interact"):
-        Global.room_switch.emit(target_room)
+        Global.game.switch_room(target_room, is_edge, is_right)
