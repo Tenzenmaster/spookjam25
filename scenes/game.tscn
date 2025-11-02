@@ -1,15 +1,21 @@
-[gd_scene load_steps=23 format=3 uid="uid://bj0gw6m72xkqj"]
+[gd_scene load_steps=29 format=3 uid="uid://bj0gw6m72xkqj"]
 
 [ext_resource type="Script" uid="uid://ctfernt0kfcp3" path="res://scripts/camera.gd" id="1_p57ef"]
 [ext_resource type="Script" uid="uid://bim5ohi0e2gq3" path="res://scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://2clfcrhikcif" path="res://sprites/assets front.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cpsd67s55uecg" path="res://scenes/ui.tscn" id="2_0tnpc"]
+[ext_resource type="AudioStream" uid="uid://ct04nlnntbqge" path="res://sounds/Obnoxious_Happy_Song_Fix.wav" id="2_kvpfn"]
 [ext_resource type="Script" uid="uid://b07ill4tktv5i" path="res://scripts/interact_area.gd" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://dn7b7b7l64sv7" path="res://scripts/room_switch_area.gd" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://dbe4q4dh0ywln" path="res://sprites/assets back.png" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://dlno60mi4lj4b" path="res://sprites/assets right.png" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://bmonhid6p5yqc" path="res://scripts/bird_stand.gd" id="7_dinhu"]
+[ext_resource type="Texture2D" uid="uid://biq1au11q44mo" path="res://sprites/assets bird body 1.png" id="8_ca42v"]
 [ext_resource type="Texture2D" uid="uid://o1btov5a7o1o" path="res://sprites/assets left.png" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://cwvesysqawd3a" path="res://sprites/assets bird head 1.png" id="9_rysoc"]
+[ext_resource type="Texture2D" uid="uid://3oukn5i3x1pw" path="res://sprites/assets bird wing 1.png" id="10_ssvqc"]
 [ext_resource type="Script" uid="uid://t3bn0cjyue5c" path="res://scripts/bird_box.gd" id="10_vtaks"]
+[ext_resource type="Texture2D" uid="uid://dxe01whulftxc" path="res://sprites/assets bird tail 1.png" id="11_264po"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
 size = Vector2(396, 533)
@@ -18,7 +24,7 @@ size = Vector2(396, 533)
 size = Vector2(540, 402)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
-size = Vector2(393, 195)
+size = Vector2(393, 439)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
 size = Vector2(96, 960)
@@ -50,6 +56,10 @@ size = Vector2(366, 114)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u5sy4")
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kvpfn")
+autoplay = true
+
 [node name="UI" parent="." instance=ExtResource("2_0tnpc")]
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -57,205 +67,223 @@ offset = Vector2(960, 540)
 script = ExtResource("1_p57ef")
 speed = 3500.0
 
-[node name="Front" type="Sprite2D" parent="."]
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="Front" type="Sprite2D" parent="Rooms"]
 texture = ExtResource("1_uwrxv")
 centered = false
 
-[node name="PC" type="Area2D" parent="Front"]
+[node name="PC" type="Area2D" parent="Rooms/Front"]
 position = Vector2(108, 338)
 script = ExtResource("2_yqjtg")
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/PC"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Front/PC"]
 position = Vector2(309, 257)
 shape = SubResource("RectangleShape2D_lnu2h")
 
-[node name="Instructions" type="Area2D" parent="Front"]
+[node name="Instructions" type="Area2D" parent="Rooms/Front"]
 position = Vector2(691, 30)
 script = ExtResource("2_yqjtg")
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/Instructions"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Front/Instructions"]
 position = Vector2(296, 191)
 shape = SubResource("RectangleShape2D_yqjtg")
 
-[node name="BirdStand" type="Area2D" parent="Front"]
+[node name="BirdStand" type="Area2D" parent="Rooms/Front"]
 position = Vector2(801, 783)
-script = ExtResource("2_yqjtg")
+script = ExtResource("7_dinhu")
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/BirdStand"]
-position = Vector2(186.5, 87.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Front/BirdStand"]
+position = Vector2(186.5, -34.5)
 shape = SubResource("RectangleShape2D_lbhrr")
 
-[node name="LeftArea" type="Area2D" parent="Front" node_paths=PackedStringArray("target_room")]
+[node name="Body" type="Sprite2D" parent="Rooms/Front/BirdStand"]
+position = Vector2(173, -17)
+texture = ExtResource("8_ca42v")
+
+[node name="Head" type="Sprite2D" parent="Rooms/Front/BirdStand"]
+position = Vector2(89, -62)
+texture = ExtResource("9_rysoc")
+
+[node name="Wing" type="Sprite2D" parent="Rooms/Front/BirdStand"]
+position = Vector2(192, 12)
+texture = ExtResource("10_ssvqc")
+
+[node name="Tail" type="Sprite2D" parent="Rooms/Front/BirdStand"]
+position = Vector2(292, 28)
+texture = ExtResource("11_264po")
+
+[node name="LeftArea" type="Area2D" parent="Rooms/Front" node_paths=PackedStringArray("target_room")]
 script = ExtResource("3_lnu2h")
 target_room = NodePath("../../Left")
 metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/LeftArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Front/LeftArea"]
 position = Vector2(48, 480)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="RightArea" type="Area2D" parent="Front" node_paths=PackedStringArray("target_room")]
+[node name="RightArea" type="Area2D" parent="Rooms/Front" node_paths=PackedStringArray("target_room")]
 script = ExtResource("3_lnu2h")
 is_right = true
 target_room = NodePath("../../Right")
 metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Front/RightArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Front/RightArea"]
 position = Vector2(1872, 480)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="Back" type="Sprite2D" parent="."]
+[node name="Back" type="Sprite2D" parent="Rooms"]
 position = Vector2(3840, 0)
 texture = ExtResource("4_iywne")
 centered = false
 
-[node name="LeftArea" type="Area2D" parent="Back" node_paths=PackedStringArray("target_room")]
+[node name="LeftArea" type="Area2D" parent="Rooms/Back" node_paths=PackedStringArray("target_room")]
 script = ExtResource("3_lnu2h")
 target_room = NodePath("../../Right")
 metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Back/LeftArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Back/LeftArea"]
 position = Vector2(48, 480)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="RightArea" type="Area2D" parent="Back" node_paths=PackedStringArray("target_room")]
+[node name="RightArea" type="Area2D" parent="Rooms/Back" node_paths=PackedStringArray("target_room")]
 script = ExtResource("3_lnu2h")
 is_right = true
 is_edge = true
 target_room = NodePath("../../Left")
 metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Back/RightArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Back/RightArea"]
 position = Vector2(1872, 480)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="Right" type="Sprite2D" parent="."]
+[node name="Right" type="Sprite2D" parent="Rooms"]
 position = Vector2(1920, 0)
 texture = ExtResource("5_p57ef")
 centered = false
 
-[node name="LeftArea" type="Area2D" parent="Right" node_paths=PackedStringArray("target_room")]
+[node name="LeftArea" type="Area2D" parent="Rooms/Right" node_paths=PackedStringArray("target_room")]
 script = ExtResource("3_lnu2h")
 target_room = NodePath("../../Front")
 metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/LeftArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Right/LeftArea"]
 position = Vector2(48, 480)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="RightArea" type="Area2D" parent="Right" node_paths=PackedStringArray("target_room")]
+[node name="RightArea" type="Area2D" parent="Rooms/Right" node_paths=PackedStringArray("target_room")]
 script = ExtResource("3_lnu2h")
 is_right = true
 target_room = NodePath("../../Back")
 metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/RightArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Right/RightArea"]
 position = Vector2(1872, 480)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="Left" type="Sprite2D" parent="."]
+[node name="Left" type="Sprite2D" parent="Rooms"]
 position = Vector2(-1920, 0)
 texture = ExtResource("9_0tnpc")
 centered = false
 
-[node name="LeftArea" type="Area2D" parent="Left" node_paths=PackedStringArray("target_room")]
+[node name="LeftArea" type="Area2D" parent="Rooms/Left" node_paths=PackedStringArray("target_room")]
 script = ExtResource("3_lnu2h")
 is_edge = true
 target_room = NodePath("../../Back")
 metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/LeftArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/LeftArea"]
 position = Vector2(48, 480)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="RightArea" type="Area2D" parent="Left" node_paths=PackedStringArray("target_room")]
+[node name="RightArea" type="Area2D" parent="Rooms/Left" node_paths=PackedStringArray("target_room")]
 script = ExtResource("3_lnu2h")
 is_right = true
 target_room = NodePath("../../Front")
 metadata/_custom_type_script = "uid://dn7b7b7l64sv7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/RightArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/RightArea"]
 position = Vector2(1872, 480)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="Head1" type="Area2D" parent="Left"]
+[node name="Head1" type="Area2D" parent="Rooms/Left"]
 position = Vector2(169, 461)
 script = ExtResource("10_vtaks")
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Head1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/Head1"]
 position = Vector2(161.5, 79.5)
 shape = SubResource("RectangleShape2D_vtaks")
 
-[node name="Head2" type="Area2D" parent="Left"]
+[node name="Head2" type="Area2D" parent="Rooms/Left"]
 position = Vector2(116, 689)
-script = ExtResource("10_vtaks")
-body_part = 1
-metadata/_custom_type_script = "uid://b07ill4tktv5i"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Head2"]
-position = Vector2(204, 120)
-shape = SubResource("RectangleShape2D_kvpfn")
-
-[node name="Body1" type="Area2D" parent="Left"]
-position = Vector2(632, 345)
 script = ExtResource("10_vtaks")
 body_part = 2
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Body1"]
-position = Vector2(180.5, 122)
-shape = SubResource("RectangleShape2D_0tnpc")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/Head2"]
+position = Vector2(204, 120)
+shape = SubResource("RectangleShape2D_kvpfn")
 
-[node name="Body2" type="Area2D" parent="Left"]
-position = Vector2(612, 667)
+[node name="Body1" type="Area2D" parent="Rooms/Left"]
+position = Vector2(632, 345)
 script = ExtResource("10_vtaks")
 body_part = 3
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Body2"]
-position = Vector2(203.5, 143)
-shape = SubResource("RectangleShape2D_dinhu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/Body1"]
+position = Vector2(180.5, 122)
+shape = SubResource("RectangleShape2D_0tnpc")
 
-[node name="Wing1" type="Area2D" parent="Left"]
-position = Vector2(1117, 379)
+[node name="Body2" type="Area2D" parent="Rooms/Left"]
+position = Vector2(612, 667)
 script = ExtResource("10_vtaks")
 body_part = 4
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Wing1"]
-position = Vector2(142.5, 75.5)
-shape = SubResource("RectangleShape2D_kvuet")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/Body2"]
+position = Vector2(203.5, 143)
+shape = SubResource("RectangleShape2D_dinhu")
 
-[node name="Wing2" type="Area2D" parent="Left"]
-position = Vector2(1092, 589)
+[node name="Wing1" type="Area2D" parent="Rooms/Left"]
+position = Vector2(1117, 379)
 script = ExtResource("10_vtaks")
 body_part = 5
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Wing2"]
-position = Vector2(148.5, 137.5)
-shape = SubResource("RectangleShape2D_trtic")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/Wing1"]
+position = Vector2(142.5, 75.5)
+shape = SubResource("RectangleShape2D_kvuet")
 
-[node name="Tail1" type="Area2D" parent="Left"]
-position = Vector2(1479, 517)
+[node name="Wing2" type="Area2D" parent="Rooms/Left"]
+position = Vector2(1092, 589)
 script = ExtResource("10_vtaks")
 body_part = 6
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Tail1"]
-position = Vector2(155, 61)
-shape = SubResource("RectangleShape2D_ir15t")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/Wing2"]
+position = Vector2(148.5, 137.5)
+shape = SubResource("RectangleShape2D_trtic")
 
-[node name="Tail2" type="Area2D" parent="Left"]
-position = Vector2(1440, 706)
+[node name="Tail1" type="Area2D" parent="Rooms/Left"]
+position = Vector2(1479, 517)
 script = ExtResource("10_vtaks")
 body_part = 7
 metadata/_custom_type_script = "uid://b07ill4tktv5i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Tail2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/Tail1"]
+position = Vector2(155, 61)
+shape = SubResource("RectangleShape2D_ir15t")
+
+[node name="Tail2" type="Area2D" parent="Rooms/Left"]
+position = Vector2(1440, 706)
+script = ExtResource("10_vtaks")
+body_part = 8
+metadata/_custom_type_script = "uid://b07ill4tktv5i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Left/Tail2"]
 position = Vector2(173, 79)
 shape = SubResource("RectangleShape2D_ca42v")

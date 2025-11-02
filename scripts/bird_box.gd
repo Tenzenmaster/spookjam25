@@ -3,6 +3,7 @@ extends InteractArea
 
 
 const BODY_PART_DICT: Dictionary[BodyPart, CompressedTexture2D] = {
+    BodyPart.NONE: null,
     BodyPart.HEAD1: preload("res://sprites/assets bird head 1.png"),
     BodyPart.HEAD2: preload("res://sprites/assets bird head 2.png"),
     BodyPart.BODY1: preload("res://sprites/assets bird body 1.png"),
@@ -15,6 +16,7 @@ const BODY_PART_DICT: Dictionary[BodyPart, CompressedTexture2D] = {
 
 
 enum BodyPart {
+    NONE,
     HEAD1,
     HEAD2,
     BODY1,

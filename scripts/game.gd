@@ -2,9 +2,10 @@ class_name Game
 extends Node2D
 
 
-@onready var current_room: Node2D = $Front
+@onready var current_room: Node2D = $Rooms/Front
 @onready var camera: Camera = $Camera
 @onready var ui: CanvasLayer = $UI
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 
 var grabbed_part: GrabbedPart = null
@@ -24,7 +25,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func switch_room(target_room: Node2D, is_edge := false, is_right := false) -> void:
-	print("switching room")
 	var original_position := current_room.position
 	if is_edge:
 		var new_starting_x := target_room.position.x + (-1920.0 if is_right else 1920.0)

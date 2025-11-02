@@ -31,3 +31,15 @@ grow_vertical = 0
 
 [node name="Slot1" parent="Inventory/HBoxContainer" instance=ExtResource("2_x4jx1")]
 layout_mode = 2
+
+[node name="Slot2" parent="Inventory/HBoxContainer" instance=ExtResource("2_x4jx1")]
+layout_mode = 2
+
+[node name="Slot3" parent="Inventory/HBoxContainer" instance=ExtResource("2_x4jx1")]
+layout_mode = 2
+
+[node name="Slot4" parent="Inventory/HBoxContainer" instance=ExtResource("2_x4jx1")]
+layout_mode = 2
+
+[node name="Slot5" parent="Inventory/HBoxContainer" instance=ExtResource("2_x4jx1")]
+layout_mode = 2
