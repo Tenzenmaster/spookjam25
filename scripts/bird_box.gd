@@ -25,6 +25,7 @@ enum BodyPart {
     WING2,
     TAIL1,
     TAIL2,
+    FULL,
 }
 
 

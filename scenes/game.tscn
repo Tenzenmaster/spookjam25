@@ -100,20 +100,23 @@ metadata/_custom_type_script = "uid://b07ill4tktv5i"
 position = Vector2(186.5, -34.5)
 shape = SubResource("RectangleShape2D_lbhrr")
 
-[node name="Body" type="Sprite2D" parent="Rooms/Front/BirdStand"]
-position = Vector2(173, -17)
+[node name="Parts" type="Node2D" parent="Rooms/Front/BirdStand"]
+position = Vector2(186, -34)
+
+[node name="Body" type="Sprite2D" parent="Rooms/Front/BirdStand/Parts"]
+position = Vector2(-3.5, 9.5)
 texture = ExtResource("8_ca42v")
 
-[node name="Head" type="Sprite2D" parent="Rooms/Front/BirdStand"]
-position = Vector2(89, -62)
+[node name="Head" type="Sprite2D" parent="Rooms/Front/BirdStand/Parts"]
+position = Vector2(-87.5, -35.5)
 texture = ExtResource("9_rysoc")
 
-[node name="Wing" type="Sprite2D" parent="Rooms/Front/BirdStand"]
-position = Vector2(192, 12)
+[node name="Wing" type="Sprite2D" parent="Rooms/Front/BirdStand/Parts"]
+position = Vector2(15.5, 38.5)
 texture = ExtResource("10_ssvqc")
 
-[node name="Tail" type="Sprite2D" parent="Rooms/Front/BirdStand"]
-position = Vector2(292, 28)
+[node name="Tail" type="Sprite2D" parent="Rooms/Front/BirdStand/Parts"]
+position = Vector2(115.5, 54.5)
 texture = ExtResource("11_264po")
 
 [node name="LeftArea" type="Area2D" parent="Rooms/Front" node_paths=PackedStringArray("target_room")]

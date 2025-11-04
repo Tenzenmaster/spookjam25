@@ -2,10 +2,11 @@ class_name BirdStand
 extends InteractArea
 
 
-@onready var head_sprite: Sprite2D = $Head
-@onready var body_sprite: Sprite2D = $Body
-@onready var wing_sprite: Sprite2D = $Wing
-@onready var tail_sprite: Sprite2D = $Tail
+@onready var parts: Node2D = $Parts
+@onready var head_sprite: Sprite2D = $Parts/Head
+@onready var body_sprite: Sprite2D = $Parts/Body
+@onready var wing_sprite: Sprite2D = $Parts/Wing
+@onready var tail_sprite: Sprite2D = $Parts/Tail
 
 
 var head_kind := BirdBox.BodyPart.NONE
@@ -22,10 +23,14 @@ func _ready() -> void:
 	tail_sprite.hide()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"debug_a"):
+		finish_bird()
+
+
 func _on_click() -> void:
-	print("bird stand clicked")
 	if Global.game.grabbed_part:
-		var part := Global.game.grabbed_part.body_part_kind
+		var part := Global.game.grabbed_part_kind
 		add_part(part)
 
 
@@ -50,3 +55,19 @@ func add_part(part: BirdBox.BodyPart) -> void:
 			tail_kind = part
 		BirdBox.BodyPart.NONE:
 			push_error("cannot add BodyPart.NONE to bird stand")
+
+
+func is_bird_finished() -> bool:
+	return (head_kind != BirdBox.BodyPart.NONE)\
+		and (body_kind != BirdBox.BodyPart.NONE)\
+		and (wing_kind != BirdBox.BodyPart.NONE)\
+		and (tail_kind != BirdBox.BodyPart.NONE)
+
+
+func finish_bird() -> void:
+	if not is_bird_finished():
+		return
+	
+	remove_child(parts)
+	Global.game.pick_up_node(parts, BirdBox.BodyPart.FULL)
+	parts = null

@@ -6,12 +6,3 @@
 [node name="Slot" type="TextureRect"]
 texture = ExtResource("1_4v6ba")
 script = ExtResource("2_ic0fu")
-
-[node name="Item" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 160.0
-offset_bottom = 149.0
-scale = Vector2(0.5, 0.5)
